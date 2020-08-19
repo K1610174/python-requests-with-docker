@@ -14,6 +14,6 @@ def animal():
     #response = requests.get("http://application2:5000/animal")
     animal=requests.get('http://application2:5001/animal/name')
     noise=requests.post('http://application2:5001/animal/noise',data=animal.text)
-    return render_template('animal.html',title='Animals',animal=animal.text, noise=noise.text)
+    return render_template('animal.html',title='Animals', animal=animal.text, noise=noise.text)
 
 
