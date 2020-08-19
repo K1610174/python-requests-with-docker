@@ -4,16 +4,16 @@ import requests
 
 @app.route('/')
 
-@app.route('/home')
+@app.route('/home', methods=['GET'])
 def home():
     return render_template('home.html', title='Home')
 
 
-@app.route('/generate', methods=['GET','POST'])
-def generate():
+@app.route('/get/animal', methods=['GET','POST'])
+def animal():
     #response = requests.get("http://application2:5000/animal")
-    response1=requests.get('https://35.246.20.139:5001/animal')
-    response2=requests.get('https://35.246.20.139:5001/noise')
-    return (response1.text , response2.text)
+    animal=requests.get('http://application2:5001/animal/name')
+    noise=requests.post('http://application2:5001/animal/noise',data=animal.text)
+    return render_template('animal.html',title='Animals',animal=animal.text, noise=noise.text)
 
 

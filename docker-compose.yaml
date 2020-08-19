@@ -1,18 +1,24 @@
 version: '3.7'
 services:
-    service1:
-      build:
-        context: ./application1
-        dockerfile: Dockerfile
-      image: 127.0.0.1:5000/application1
-      ports:
-      - target: 5000
-        published: 5000
-    service2:
-      build:
-        context: ./application2
-        dockerfile: Dockerfile
-      image: 127.0.0.1:5000/application2
-      ports:
-      - target: 5000
-        published: 5000
+  application1:
+    build:
+      context: ./application1
+      dockerfile: Dockerfile
+    image: 127.0.0.1:5000/application1 #kkekitinisa/app1:${APP_VERSION}
+    ports:
+    - target: 5000
+      published: 5000
+      protocol: tcp
+    deploy:
+      replicas: 2
+  application2:
+    build:
+      context: ./application2
+      dockerfile: Dockerfile
+    image: 127.0.0.1:5000/application2 #kkekitinisa/app2:${APP_VERSION}
+    ports:
+    - target: 5001
+      published: 5001
+      protocol: tcp
+    deploy:
+      replicas: 2

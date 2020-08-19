@@ -4,22 +4,25 @@ import requests
 import random
 
 @app.route('/')
-@app.route('/animal' methods=['GET','POST'])
-def animal():
+@app.route('/animal/name' methods=['GET','POST'])
+def animal_name():
     animal_list=["dog","goat","pig","cat","cow"]
     the_data = random.choice(animal_list)
     return Response("Animal: " + the_data, mimetype='text/plain')
 
-@app.route('/noise' methods=['GET','POST'])
-def noise():
-    response=requests.get('https://35.246.20.139:5000/animal')
-    if response.text == "dog":
-        return "bark"
-    elif response.text == "goat":
-        return "bleat"
-    elif response.text == "pig":
-        return "oink"
-    elif response.text == "cat":
-        return "meow"
-    elif response.text == "cow":
-        return "moo"
+@app.route('/animal/noise' methods=['GET','POST'])
+def animal_noise():
+    response=request.data.decode('utf-8')
+    if response == "dog":
+        noise = "bark"
+    elif response == "goat":
+        noise = "bleat"
+    elif response == "pig":
+        noise = "oink"
+    elif response == "cat":
+        noise = "meow"
+    elif response == "cow":
+        noise = "moo"
+    else:
+        noise = "Hmmm???"
+    return Response(noise, mimetype='text/plain')
