@@ -2,14 +2,14 @@ version: '3.7'
 services:
   application1:
     build: ./application1
-    #image: 127.0.0.1:5000/application1 #kkekitinisa/app1:${APP_VERSION}
+    image: 127.0.0.1:5000/application1 #kkekitinisa/app1:${APP_VERSION}
     ports:
       - target: 5000
         published: 5000
         protocol: tcp
   application2:
     build: ./application2
-    #image: 127.0.0.1:5001/application2 #kkekitinisa/app2:${APP_VERSION}
+    image: 127.0.0.1:5001/application2 #kkekitinisa/app2:${APP_VERSION}
     ports:
       - target: 5001
         published: 5001
